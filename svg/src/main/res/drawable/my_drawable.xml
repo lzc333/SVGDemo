@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="150dp"
+    android:height="24dp"
+    android:viewportHeight="24"
+    android:viewportWidth="150">
+    <path
+        android:name="my_search_bar"
+        android:pathData="M140,17
+         A7,7,0,1,1,140.5,16.5
+         L145,24
+         L0,24"
+        android:strokeColor="#ffffff"
+        android:strokeLineCap="round"
+        android:strokeWidth="2" />
+
+    <path
+        android:name="my_search_line"
+        android:pathData="M0,20 L0,5"
+        android:strokeColor="#ffffff"
+        android:strokeLineCap="round"
+        android:strokeWidth="2" />
+</vector>
+
+
+    <!--
+        <vector>：
+        根标签，表示一个矢量动画
+        支持的属性：
+
+        android:name：定义矢量图形的名称
+        android:width：定义Drawable的宽度，支持所有dimension单位，一般使用dp。drawable的宽度不一定是最终绘制宽度，比如给ImageView设置background则Drawable绘制宽度等于ImageView的宽度，给ImageView设置src则在ImageView大于Drawable宽度时，Drawable绘制宽度等于自己定义的宽度。
+        android:height：定义Drawable的宽度，支持所有dimension单位，一般是dp。其它同上。
+        android:viewportWidth：定义矢量图形的视图(viewport)空间的宽度，viewport是一个虚拟的canvas，后面所有的path都在该坐标系上绘制。坐标系左上方为(0,0)，横轴从左向右，纵轴从上到下。横轴可视区域就是0~viewportWidth。
+        android:viewportHeight：定义矢量图形的可视区域的高度。其它见上。[0,0]~[viewportWidth,viewportHeight]定义了虚拟canvas的可视区域。
+        android:tint：作为染色(tint)的色彩应用到drawable上。默认不应用tint。
+        android:tintMode：tint颜色的Porter-Duff混合模式，默认是src_in。
+        android:autoMirrored：如果drawable布局方向是RTL(right-to-left)时，drawable绘制是否需要镜像化（镜像化就是绕自身x轴中线旋转180度）。
+        android:alpha：drawable的透明度，取值0～1
+
+
+        <group>：
+            定义一组路径和子group，另外还定义了转换信息(transformation information)。转换信息定义在vector指定的视图区域内（与viewport坐标系相同）。定义的应用转换的顺序是缩放&ndash;&gt;旋转&ndash;&gt;平移，所以同时定义的这些属性最先应用scaleX/scaleY属性，最后应用translateX/translateY属性。
+            支持的属性：
+
+            android:name：定义group的名称
+            android:rotation：group对应矢量图形的旋转角度，取值是360度制。
+            android:pivotX：Group旋转和缩放时的中心点的X轴坐标。取值基于viewport视图的坐标系，不能使用百分比。
+            android:pivotY：Group旋转和缩放时的中心点的Y轴坐标。取值基于viewport视图的坐标系，不能使用百分比。
+            android:scaleX：Group在X轴上的缩放比例，最先应用到图形上。
+            android:scaleY：Group在Y轴上的缩放比例，最先应用到图形上。
+            android:translateX：Group在X轴的平移距离，取值基于viewport视图的坐标系。最后应用到图形上。
+            android:translateY：Group在Y轴的平移距离，取值基于viewport视图的坐标系。最后应用到图形上。
+
+
+        <path>：
+            定义一个路径，一个路径即可以表示一块填充区域也可以表示一根线条。
+            支持的属性：
+
+            android:name：定义路径的名称
+            android:pathData：定义路径的数据，路径由多条命令组成，格式与SVG标准的path data的d属性完全相同，路径命令的参数定义在viewport视图的坐标系。
+            android:fillColor：指定填充路径的颜色，一般是一个颜色值，在SDK24及以上，可以指定一个颜色状态列表或者一个渐变的颜色。如果在此属性上做渐变动画，新的属性值会覆盖此值。如果不指定，则path不被填充。
+            android:strokeColor：指定路径线条的颜色，一般是一个颜色值，在SDK24及以上，可以指定一个颜色状态列表或者一个渐变的颜色。如果在此属性上做渐变动画，新的属性值会覆盖此值。如果不指定，则path的线条不会绘制出来。
+            android:strokeWidth：指定路径线条的宽度，基于viewport视图的坐标系（不要dp/px之类的结尾）。
+            android:strokeAlpha：指定路径线条的透明度。
+            android:fillAlpha：指定填充区域的透明度。
+            android:trimPathStart：取值从0到1，表示路径从哪里开始绘制。0~trimPathStart区间的路径不会被绘制出来。
+            android:trimPathEnd：取值从0到1，表示路径绘制到哪里。trimPathEnd~1区间的路径不会被绘制出来。
+            android:trimPathOffset：平移可绘制区域，取值从0到1，线条从(trimPathOffset+trimPathStart绘制到trimPathOffset+trimPathEnd)，注意：trimPathOffset+trimPathEnd如果超过1，其实也是绘制的的，绘制的是0～trimPathOffset+trimPathEnd-1的位置。
+            android:strokeLineCap：设置线条首尾的外观，三个值：butt（默认，向线条的每个末端添加平直的边缘）, round（向线条的每个末端添加圆形线帽）, square（向线条的每个末端添加正方形线帽。）。
+            android:strokeLineJoin：设置当两条线条交汇时，创建什么样的边角（线段连接类型）：三个值：miter（默认，创建尖角）,round（创建圆角）,bevel（创建斜角） 。
+            android:strokeMiterLimit：设置设置最大斜接长度，斜接长度指的是在两条线交汇处内角和外角之间的距离。只有当 lineJoin 属性为 "miter" 时，miterLimit 才有效。
+    -->
+
+
+
+<!--
+    了解语法：
+    M = moveto(M X,Y) ：将画笔移动到指定的坐标位置，相当于 android Path 里的moveTo()
+    L = lineto(L X,Y) ：画直线到指定的坐标位置，相当于 android Path 里的lineTo()
+    H = horizontal lineto(H X)：画水平线到指定的X坐标位置
+    V = vertical lineto(V Y)：画垂直线到指定的Y坐标位置
+    C = curveto(C X1,Y1,X2,Y2,ENDX,ENDY)：三次贝赛曲线
+    S = smooth curveto(S X2,Y2,ENDX,ENDY) 同样三次贝塞尔曲线，更平滑
+    Q = quadratic Belzier curve(Q X,Y,ENDX,ENDY)：二次贝赛曲线
+    T = smooth quadratic Belzier curveto(T ENDX,ENDY)：映射 同样二次贝塞尔曲线，更平滑
+    A = elliptical Arc(A RX,RY,XROTATION,FLAG1,FLAG2,X,Y)：弧线 ，相当于arcTo()
+    Z = closepath()：关闭路径（会自动绘制链接起点和终点）
+    注意：以上所有命令均允许小写字母。大写表示绝对定位，小写表示相对定位。
+ -->
