@@ -8,6 +8,6 @@
 
     <target
         android:name="my_search_line"
-        android:animation="@animator/anim_fill" />
+        android:animation="@animator/anim_empty" />
 
 </animated-vector>

@@ -4,25 +4,30 @@
     android:height="24dp"
     android:viewportHeight="24"
     android:viewportWidth="150">
-    <path
-        android:name="my_search_bar"
-        android:pathData="M140,17
+
+    <group
+        android:name="my_search_group">
+
+        <path
+            android:name="my_search_bar"
+            android:pathData="M140,17
          A7,7,0,1,1,140.5,16.5
          L145,24
          L0,24"
-        android:strokeColor="#ffffff"
-        android:strokeLineCap="round"
-        android:strokeWidth="2" />
+            android:strokeColor="#ffffff"
+            android:strokeLineCap="round"
+            android:strokeWidth="2" />
 
-    <path
-        android:name="my_search_line"
-        android:pathData="M0,5 L0,20"
-        android:strokeColor="#ffffff"
-        android:trimPathStart="1"
-        android:strokeLineCap="round"
-        android:strokeWidth="2" />
+        <path
+            android:name="my_search_line"
+            android:pathData="M0,20 L0,5"
+            android:strokeColor="#ffffff"
+            android:strokeLineCap="round"
+            android:strokeWidth="2" />
 
-    <!--通过trimPathStart="1"隐藏-->
+    </group>
+
+
 </vector>
 
 
@@ -97,7 +102,7 @@
  <!--
     矢量动画2种方式与流程
     矢量动画有一些不一样的细节，这里需要提前了解，否则容易在后续使用的时候困惑。
-    1.group动画(详见my_animator_move.xml和my_drawable_group)
+    1.group动画
     使用group包裹后的动画，为什么要使用它来包裹path？因为属性动画要改变绘制的图片属性来实现动画，可是path标签中并没有translateX和translateY属性，因此，VectorDrawable要想使用属性，就需要用group标签来封装path标签，将属性动画作用在group标签中，这里使用group标签将vector图片分成了两组，如果图片比较复杂，会将其分成多组。但是group不支持直接操作path的属性。所以这种动画形式是直接移动整个path或者矢量图，它不能根据矢量图参数来变化动画。另外它的添加和启动动画方式与path的name的动画不同。
 
     2.path动画
@@ -132,16 +137,13 @@
     propertyName:指定动作属性如下：
     translateX  X轴移动
     translateY  Y轴移动
+    trimPathStart  属性表示截掉从起点到某个位置的部分，保留剩下的部分,轨迹的起点位置是0%，轨迹的终点位置是100%
+    trimPathEnd  表示截掉从某个位置到终点的部分，保留剩下的部分
     scaleX   X轴放大或者缩小比例
     scaleY   Y轴放大或者缩小比例
     rotation  旋转
-
-    trimPathStart  属性表示截掉从起点到某个位置的部分，保留剩下的部分,轨迹的起点位置是0%，轨迹的终点位置是100%
-    trimPathEnd  表示截掉从某个位置到终点的部分，保留剩下的部分
     fillAlpha  透明度
     fillColor  颜色
-    pathData   注意两点：第一点 android:valueType="pathType"  这里使用的参数格式是pathType
-                    第二点 矢量动画要求初始帧的路径命令序列（valueFrom）与结束帧的路径命令序列（valueTo）内的命令必须一一对应，只有参数值可以不同，这样才能插值，从而矢量动画才能执行。否则编译后运行时就崩溃了。
     Vector里面的属性基本上都可以（需要注意target里面绑定的是group就只能使用当前group的属性，下级group或path等不能使用，绑定的path就只能使用当前path的属性，clip-path一样）。
 
 

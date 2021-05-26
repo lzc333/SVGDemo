@@ -1,15 +1,17 @@
 package com.lzc.svgdemo
 
+import android.graphics.drawable.Animatable
 import android.graphics.drawable.AnimatedVectorDrawable
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var animatorFill : AnimatedVectorDrawable
-    lateinit var animatorEmpty : AnimatedVectorDrawable
-    var isEmpty = false
+    lateinit var animatorSearch : AnimatedVectorDrawable
+    lateinit var animatorLine : AnimatedVectorDrawable
+    lateinit var animatorPath : AnimatedVectorDrawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,18 +20,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initMyImageView() {
-        animatorFill = resources.getDrawable(R.drawable.my_animator_fill) as AnimatedVectorDrawable
-        animatorEmpty = resources.getDrawable(R.drawable.my_animator_empty) as AnimatedVectorDrawable
+        animatorSearch = resources.getDrawable(R.drawable.my_animator_search) as AnimatedVectorDrawable
+        animatorLine = resources.getDrawable(R.drawable.my_animator_line) as AnimatedVectorDrawable
+        animatorPath = resources.getDrawable(R.drawable.my_animator_path) as AnimatedVectorDrawable
 
-        my_imageView.setOnClickListener {
-            if(isEmpty){
-                my_imageView.setImageDrawable(animatorEmpty)
-                animatorEmpty.start()
-            }else{
-                my_imageView.setImageDrawable(animatorFill)
-                animatorFill.start()
-            }
-            isEmpty = !isEmpty
+
+
+        line_button.setOnClickListener {
+            my_imageView.setImageDrawable(animatorLine)
+            animatorLine.start()
         }
+
+        search_button.setOnClickListener{
+            my_imageView.setImageDrawable(animatorSearch)
+            animatorSearch.start()
+        }
+
+        path_button.setOnClickListener{
+            my_imageView.setImageDrawable(animatorPath)
+            animatorPath.start()
+        }
+
+        move_button.setOnClickListener {
+            my_imageView.setImageResource(R.drawable.my_animator_move)
+            val drawable: Drawable = my_imageView.drawable
+            if (drawable is Animatable) {
+                (drawable as Animatable).start()
+            }
+
+        }
+
     }
 }
